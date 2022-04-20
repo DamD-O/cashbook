@@ -126,7 +126,7 @@ public class CashBookDao {
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");//드라이버 로딩
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/cashbook","root","java1234");
-			conn.setAutoCommit(false); //자동커밋 해제
+
 			//쿼리문
 			String sql ="select cashbook_no cashbookNo,cash_date cashDate, kind, cash, memo,create_date createDate, update_date updateDate from cashbook where cashbook_no =?";
 			stmt =conn.prepareStatement(sql);
@@ -153,7 +153,56 @@ public class CashBookDao {
 			}
 		}
 		return cashBook;
+	}
+	
+	//4.삭제
+	public void deleteCashBook(int cashbookNo) {
+		//DB자원 준비
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		PreparedStatement stmt2 = null;
 		
+		
+		
+		try {
+			Class.forName("org.mariadb.jdbc.Driver");
+			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/cashbook","root","java1234");
+		
+			//삭제
+			String sql = "DELETE FROM cashbook WHERE cashbook_no=?";
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, cashbookNo);
+			int row  = stmt.executeUpdate(); //delete
+			
+			//해시태그 삭제
+			String sql2 = "DELETE FROM hashtag WHERE cashbook_no=?";
+			stmt2=conn.prepareStatement(sql2);
+			stmt2.setInt(1, cashbookNo);
+			stmt2.executeUpdate();
+			
+			if(row == 1) {
+				System.out.println("삭제성공");
+			}else {
+				System.out.println("삭제실패");
+			}
+			
+			conn.commit(); //예외가 없을때 커밋
+		} catch (Exception e) {
+			try {
+				conn.rollback();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		}finally {
+			try {
+				stmt2.close();
+				stmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 }
