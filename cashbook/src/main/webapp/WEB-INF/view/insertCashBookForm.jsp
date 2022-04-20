@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,8 +20,6 @@
 			<td>
 				<div class="form-check-inline">
 				<input type="radio" name="kind" value="수입" class="form-check-input">수입
-				</div>
-				<div class="form-check-inline">
 				<input type="radio" name="kind" value="지출" class="form-check-input">지출
 				</div>
 			</td>	
