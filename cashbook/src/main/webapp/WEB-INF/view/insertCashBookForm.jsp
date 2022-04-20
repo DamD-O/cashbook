@@ -9,7 +9,7 @@
 <body>
 <div class="container-lg p-3 my-3 border border-dark">
 	<h1>insertCashBook</h1>
-	<form action="<%=request.getContextPath()%>/InsertCashBookController" method="post">
+	<form action="<%=request.getContextPath()%>/InsertCashbookController" method="post">
 	<table class="table-bordered">
 		<tr>
 			<td>날짜</td>

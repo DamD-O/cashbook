@@ -162,29 +162,27 @@ public class CashBookDao {
 		PreparedStatement stmt = null;
 		PreparedStatement stmt2 = null;
 		
-		
-		
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/cashbook","root","java1234");
-		
+			conn.setAutoCommit(false); // 오토커밋 해제
+			
 			//삭제
 			String sql = "DELETE FROM cashbook WHERE cashbook_no=?";
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, cashbookNo);
 			int row  = stmt.executeUpdate(); //delete
-			
-			//해시태그 삭제
-			String sql2 = "DELETE FROM hashtag WHERE cashbook_no=?";
-			stmt2=conn.prepareStatement(sql2);
-			stmt2.setInt(1, cashbookNo);
-			stmt2.executeUpdate();
-			
 			if(row == 1) {
 				System.out.println("삭제성공");
 			}else {
 				System.out.println("삭제실패");
 			}
+			
+			//해시태그 삭제
+			String sql2 = "DELETE FROM hashtag WHERE cashbook_no = ?";
+			stmt2=conn.prepareStatement(sql2);
+			stmt2.setInt(1, cashbookNo);
+			stmt2.executeUpdate();
 			
 			conn.commit(); //예외가 없을때 커밋
 		} catch (Exception e) {
@@ -196,13 +194,10 @@ public class CashBookDao {
 			e.printStackTrace();
 		}finally {
 			try {
-				stmt2.close();
-				stmt.close();
 				conn.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
 	}
-	
 }
