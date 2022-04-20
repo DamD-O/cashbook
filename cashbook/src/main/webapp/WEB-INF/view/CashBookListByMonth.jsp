@@ -60,7 +60,7 @@
 							}
 				%>
 							<td class="<%=c%>"><%=i-startBlank%>
-								<a href="<%=request.getContextPath()%>/InsertCashBookController?y=<%=y %>&m=<%=m %>&d=<%=i-startBlank%>" class="btn btn-outline-success btn-sm">입력</a>
+								<a href="<%=request.getContextPath()%>/InsertCashbookController?y=<%=y %>&m=<%=m %>&d=<%=i-startBlank%>" class="btn btn-outline-success btn-sm">입력</a>
 								<div>
 									<%
 										//해당 날짜의 cashbook 목록 출력
