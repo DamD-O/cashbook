@@ -3,7 +3,9 @@ package dao;
 import java.sql.*;
 import java.util.*;
 
-public class CashbookDao {
+import vo.CashBook;
+
+public class CashBookDao {
 	public List<Map<String, Object>> selectCashBookListByMonth(int y, int m){
 		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
 		
@@ -52,8 +54,6 @@ public class CashbookDao {
 	         e.printStackTrace();
 	      } finally {
 	         try {
-	            rs.close();
-	            stmt.close();
 	            conn.close();
 	         } catch (SQLException e) {
 	            e.printStackTrace();
@@ -61,4 +61,55 @@ public class CashbookDao {
 	      }
 	      return list;
 	   }
+	
+	public void insertCashBook(CashBook cashbook, List<String> hashtag) {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			Class.forName("org.mariadb.jdbc.Driver");
+			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/cashbook","root","java1234");
+			conn.setAutoCommit(false); //자동커밋 해제
+			
+			String sql = "INSERT INTO cashbook(cash_date, kind,cash,memo,update_date,create_date) values(?,?,?,?,NOW(),NOW())";
+			
+			//insert + select 방금생성된 행의 키값 ex)select 방금입력한 cashbook_no from cashbook;
+			stmt = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+			stmt.setString(1, cashbook.getCashDate());
+			stmt.setString(2, cashbook.getKind());
+			stmt.setInt(3, cashbook.getCash());
+			stmt.setString(4, cashbook.getMemo());
+			stmt.executeUpdate(); //insert
+			rs = stmt.getGeneratedKeys(); //select 방금입력한 cashbook_no from cashbook
+			int cashbookNo = 0;
+			if(rs.next()) {
+				cashbookNo = rs.getInt(1);;
+			}
+			//hashtag를 저장하는 코드
+			PreparedStatement stmt2 = null;
+			for(String h : hashtag) {
+				String sql2 = "INSERT INTO hashtag(cashbook_no, tag, create_date) VALUES(?, ?, NOW())";
+				stmt2 = conn.prepareStatement(sql2);
+				stmt2.setInt(1, cashbookNo);
+				stmt2.setString(2, h);
+				stmt2.executeUpdate();
+			}
+			
+			conn.commit(); //예외가 없을때 커밋
+			} catch (Exception e) {
+				try {
+					conn.rollback();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				e.printStackTrace();
+			}finally {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 }
