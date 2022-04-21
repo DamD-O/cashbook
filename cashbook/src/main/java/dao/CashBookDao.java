@@ -172,6 +172,7 @@ public class CashBookDao {
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, cashbookNo);
 			int row  = stmt.executeUpdate(); //delete
+			//디버깅
 			if(row == 1) {
 				System.out.println("삭제성공");
 			}else {
@@ -185,7 +186,7 @@ public class CashBookDao {
 			stmt2.executeUpdate();
 			
 			conn.commit(); //예외가 없을때 커밋
-		} catch (Exception e) {
+		}catch (Exception e) {
 			try {
 				conn.rollback();
 			} catch (Exception e1) {
@@ -194,6 +195,8 @@ public class CashBookDao {
 			e.printStackTrace();
 		}finally {
 			try {
+				stmt2.close();
+				stmt.close();
 				conn.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
