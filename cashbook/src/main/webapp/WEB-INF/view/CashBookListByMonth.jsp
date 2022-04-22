@@ -27,6 +27,13 @@
 		System.out.println(endBlank + ": endBlank(CashBookListByMonth.jsp)");
 		System.out.println(totalBlank + ": totalBlank(CashBookListByMonth.jsp)");
 	%>
+	<div>
+		<%=session.getAttribute("sessionMemberId")%>님 반갑습니다.
+		<a href="<%=request.getContextPath()%>/LoLogoutController" class="btn btn-outline-dark btn-sm">로그아웃</a>
+	</div>
+	<div>
+		<a href="<%=request.getContextPath()%>/TagController" class="btn btn-outline-info btn-sm">tags</a>
+	</div>
 	<h2><%=y%>년 <%=m%>월</h2>
 	<div>
 		<a href="<%=request.getContextPath()%>/CashBookListByMonthController?y=<%=y%>&m=<%=m-1%>" class="btn btn-outline-info btn-sm">이전 달</a>
