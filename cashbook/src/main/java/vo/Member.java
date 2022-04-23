@@ -1,3 +1,4 @@
+//vo: 데이터 전달
 package vo;
 
 public class Member {
