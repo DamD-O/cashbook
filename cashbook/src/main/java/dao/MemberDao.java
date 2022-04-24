@@ -1,3 +1,4 @@
+//dao : db연결 기능, 쿼리 수행
 package dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,15 +10,15 @@ import java.util.Map;
 
 import vo.*;
 public class MemberDao {
-	//회원가입
+	//회원가입(insert)
 	
-	//회원정보 수정
+	//회원정보 수정(update)
 	
-	//회원 탈퇴
+	//회원 탈퇴(delete)
 	
-	//회원정보
+	//회원정보(select one)
 	
-	//로그인
+	//로그인(성공하면 입력한 아이디와 비밀번호가 존재하면 아이디값 리턴, 없으면 null리턴->로그인 실패)
 	public String selectMemberByLogin(Member member) {
 		String memberId = null;
 		
@@ -25,7 +26,7 @@ public class MemberDao {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		String sql ="SELECT member_id memberId FROM WHERE member_id=? AND member_pw=PASSWORD(?)";
+		String sql ="SELECT member_id memberId FROM member WHERE member_id=? AND member_pw=PASSWORD(?)";
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/cashbook","root","java1234");
