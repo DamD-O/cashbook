@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.util.*;
 import dao.*;
+import vo.Stats;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,9 +14,8 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/CashBookListByMonthController")
 public class CashBookListByMonthController extends HttpServlet {
-	
+	private StatsDao statsDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		HttpSession session = request.getSession();
 		String sessionMemberId =(String)session.getAttribute("sessionMemberId");
 		if(sessionMemberId == null) {
@@ -83,6 +83,13 @@ public class CashBookListByMonthController extends HttpServlet {
 		}
 		//4.
 		int totalBlank = startBlank + endBlank +endDay; 
+		////////////////////////////////////////////////////////////////////
+		
+		//stats
+		this.statsDao = new StatsDao();
+		Stats stats = statsDao.selectStatsOneByNow();
+		int totalCount = statsDao.selectStatsTotalCount();
+		
 		
 		//2) 모델값(월별 가계부 리스트)을 반환하는 비지니스로직(모델) 호출
 		CashBookDao cashbookDao = new CashBookDao();
@@ -99,6 +106,11 @@ public class CashBookListByMonthController extends HttpServlet {
 		request.setAttribute("list", list);
 		request.setAttribute("y", y);
 		request.setAttribute("m", m);
+		//////////////////////////////////////////////////////////
+		
+		//stats
+		request.setAttribute("stats", stats);
+		request.setAttribute("totalCount", totalCount);
 		
 		//3) 뷰 포워딩
 		request.getRequestDispatcher("/WEB-INF/view/CashBookListByMonth.jsp").forward(request, response);

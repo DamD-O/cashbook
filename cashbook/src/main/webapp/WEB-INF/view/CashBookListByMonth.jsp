@@ -9,6 +9,11 @@
 </head>
 <body>
 <div class="container-lg p-3 my-3 border border-dark">
+	<div>
+		현재 접속자 수 : ${currentCount} / 
+		오늘(${stats.day}) 접속자 수 : ${stats.cnt} /
+		총 접속자 수 : ${totalCount} 
+	</div>
 	<%
 		List<Map<String, Object>> list =(List<Map<String,Object>>)request.getAttribute("list");
 		int y = (Integer)request.getAttribute("y");
@@ -107,6 +112,7 @@
 			</tr>
 		</tbody>
 	</table>
+	
 </div>
 </body>
 </html>
