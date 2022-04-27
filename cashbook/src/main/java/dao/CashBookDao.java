@@ -87,7 +87,7 @@ public class CashBookDao {
 			rs = stmt.getGeneratedKeys(); //select 방금입력한 cashbook_no from cashbook
 			int cashbookNo = 0;
 			if(rs.next()) {
-				cashbookNo = rs.getInt(1);;
+				cashbookNo = rs.getInt(1);
 			}
 			//hashtag를 저장하는 코드
 			PreparedStatement stmt2 = null;
