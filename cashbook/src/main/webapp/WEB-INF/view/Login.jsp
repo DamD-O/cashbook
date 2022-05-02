@@ -15,6 +15,10 @@
 </head>
 <body>
 <div>
+	<h2>회원가입</h2>
+	<div>
+		<a href="<%=request.getContextPath()%>/insertMemberController">회원가입</a>
+	</div>
 	<h2>로그인</h2>
 	<form action="<%=request.getContextPath()%>/LoginController" method="post">
 		<table>
