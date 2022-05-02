@@ -95,11 +95,12 @@ public class StatsDao {
 			rs = stmt.executeQuery();
 
 			int row = stmt.executeUpdate(); // 입력된 행
-
+			
+			//디버깅
 			if (row == 1) {
-				System.out.println("1행 수정 성공");
+				System.out.println("방문자 update 성공");
 			} else {
-				System.out.println("1행 수정 실패");
+				System.out.println("방문자 update 실패");
 			}
 
 		} catch (Exception e) {
