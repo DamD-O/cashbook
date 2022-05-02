@@ -79,7 +79,7 @@ public class StatsDao {
 		return stats;
 
 	}
-
+	//업데이트
 	public void updateStatsByNow() { // ->Listener
 		// update stats set cnt= cnt+1 WHERE DAY = CURDATE();
 		// db자원
