@@ -90,7 +90,7 @@ public class StatsDao {
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/cashbook", "root", "java1234");
-			String sql = "update stats set cnt= cnt+1 WHERE DAY = CURDATE()";
+			String sql = "update stats set cnt = cnt+1 WHERE DAY = CURDATE()";
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 

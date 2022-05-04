@@ -34,6 +34,12 @@
 				<textarea rows="4" cols="50" name="memo" class="form-control" ></textarea>
 			</td>
 		</tr>
+		<tr>
+			<td>memberId</td>
+			<td>
+				<input type="text" name="memberId" class="form-control">
+			</td>
+		</tr>
 	</table>
 	<button type="submit" class="btn btn-outline-success">입력</button>
 	</form>

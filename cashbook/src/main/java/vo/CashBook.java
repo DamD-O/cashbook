@@ -8,6 +8,11 @@ public class CashBook {
 	private String memo;
 	private String updateDate;
 	private String createDate;
+	@Override
+	public String toString() {
+		return "CashBook [cashbookNo=" + cashbookNo + ", cashDate=" + cashDate + ", kind=" + kind + ", cash=" + cash
+				+ ", memo=" + memo + ", updateDate=" + updateDate + ", createDate=" + createDate + "]";
+	}
 	//getter /setter
 	public int getCashbookNo() {
 		return cashbookNo;
@@ -51,12 +56,4 @@ public class CashBook {
 	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
-	//toString()
-	@Override
-	public String toString() {
-		return "Cashbook [cashbookNo=" + cashbookNo + ", cashDate=" + cashDate + ", kind=" + kind + ", cash=" + cash
-				+ ", memo=" + memo + ", updateDate=" + updateDate + ", createDate=" + createDate + "]";
-	}
-	
-	
 }
