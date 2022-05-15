@@ -19,9 +19,9 @@
 	<table class="table table-bordered small">
 		<tr>
 			<th>kind</th>
-			<th>tag</th>
-			<th>count</th>
 			<th>rank</th>
+			<th>tag</th>
+			<th>count</th>	
 		</tr>
 		<%
 			for(Map<String,Object> map : list){

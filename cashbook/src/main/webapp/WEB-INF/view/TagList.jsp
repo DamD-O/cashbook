@@ -46,9 +46,9 @@
 	</div>
 	<table class="table table-bordered small">
 		<tr>
+			<th>rank</th>
 			<th>tag</th>
 			<th>count</th>
-			<th>rank</th>
 		</tr>
 		<%
 			for(Map<String,Object> map : list){
