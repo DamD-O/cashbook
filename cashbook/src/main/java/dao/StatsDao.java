@@ -19,7 +19,7 @@ public class StatsDao {
 
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/cashbook", "root", "java1234");
+			conn = DriverManager.getConnection("jdbc:mariadb://3.36.57.93:3306/cashbook","root","mariadb1234");
 			stmt = conn.prepareStatement(sql);
 			
 			int row = stmt.executeUpdate(); // 입력된 행
@@ -52,7 +52,7 @@ public class StatsDao {
 		Stats stats = null;
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/cashbook", "root", "java1234");
+			conn = DriverManager.getConnection("jdbc:mariadb://3.36.57.93:3306/cashbook","root","mariadb1234");
 			// SELECT day,cnt FROM stats WHERE DAY = CURDATE();
 			String sql = "SELECT day,cnt FROM stats WHERE DAY = CURDATE()";
 			stmt = conn.prepareStatement(sql);
@@ -89,7 +89,7 @@ public class StatsDao {
 
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/cashbook", "root", "java1234");
+			conn = DriverManager.getConnection("jdbc:mariadb://3.36.57.93:3306/cashbook","root","mariadb1234");
 			String sql = "update stats set cnt = cnt+1 WHERE DAY = CURDATE()";
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
@@ -128,7 +128,7 @@ public class StatsDao {
 		
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/cashbook", "root", "java1234");
+			conn = DriverManager.getConnection("jdbc:mariadb://3.36.57.93:3306/cashbook","root","mariadb1234");
 			String sql = "select sum(cnt) totalCnt from stats";
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();

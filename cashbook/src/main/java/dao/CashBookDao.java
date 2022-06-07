@@ -38,7 +38,8 @@ public class CashBookDao {
 		//db연결
 		try {
 	         Class.forName("org.mariadb.jdbc.Driver");
-	         conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/cashbook","root","java1234");
+	         //conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/cashbook","root","java1234");
+	         conn = DriverManager.getConnection("jdbc:mariadb://3.36.57.93:3306/cashbook","root","mariadb1234");
 	         stmt = conn.prepareStatement(sql);
 	         stmt.setInt(1, y);
 	         stmt.setInt(2, m);
@@ -73,7 +74,7 @@ public class CashBookDao {
 		//db연결
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/cashbook","root","java1234");
+			conn = DriverManager.getConnection("jdbc:mariadb://3.36.57.93:3306/cashbook","root","mariadb1234");
 			conn.setAutoCommit(false); //자동커밋 해제
 			
 			String sql = "INSERT INTO cashbook(cash_date, kind,cash,memo,update_date,create_date,member_id) values(?,?,?,?,NOW(),NOW(),?)"; // 이슈 : FK memberId입력
@@ -127,7 +128,7 @@ public class CashBookDao {
 		
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");//드라이버 로딩
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/cashbook","root","java1234");
+			conn = DriverManager.getConnection("jdbc:mariadb://3.36.57.93:3306/cashbook","root","mariadb1234");
 
 			//쿼리문
 			String sql ="select cashbook_no cashbookNo,cash_date cashDate, kind, cash, memo,create_date createDate, update_date updateDate from cashbook where cashbook_no =?";
@@ -166,7 +167,7 @@ public class CashBookDao {
 		
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/cashbook","root","java1234");
+			conn = DriverManager.getConnection("jdbc:mariadb://3.36.57.93:3306/cashbook","root","mariadb1234");
 			conn.setAutoCommit(false); // 오토커밋 해제
 			
 			//삭제
@@ -216,7 +217,7 @@ public class CashBookDao {
 				//db연결
 				try {
 					Class.forName("org.mariadb.jdbc.Driver");
-					conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/cashbook","root","java1234");
+					conn = DriverManager.getConnection("jdbc:mariadb://3.36.57.93:3306/cashbook","root","mariadb1234");
 					conn.setAutoCommit(false); //자동커밋 해제
 					
 					String sql = "update cashbook set kind =?, cash=?, memo =?, update_date=NOW())";
