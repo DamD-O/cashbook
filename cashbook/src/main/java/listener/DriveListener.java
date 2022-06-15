@@ -9,7 +9,6 @@ import dao.StatsDao;
 
 @WebListener
 public class DriveListener implements ServletContextListener {
-	private StatsDao statsDao;
 	@Override
     public void contextInitialized(ServletContextEvent sce)  { 
 		//현재 접속자 카운트 속성

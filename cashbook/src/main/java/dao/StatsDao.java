@@ -11,7 +11,8 @@ import vo.Stats;
 
 public class StatsDao {
 	public void insertStats() {
-		// insert into stats(day, cnt) values(CURDATE(),1) ;
+		//처음 방문자
+	    // insert into stats(day, cnt) values(CURDATE(),1) ;
 		// db자원
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -60,10 +61,9 @@ public class StatsDao {
 
 			if(rs.next()) {
 				stats = new Stats();
-				stats.setDay(rs.getString("day"));
 				stats.setCnt(rs.getInt("cnt"));
+				stats.setDay(rs.getString("day"));
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -85,15 +85,13 @@ public class StatsDao {
 		// db자원
 		Connection conn = null;
 		PreparedStatement stmt = null;
-		ResultSet rs = null;
 
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mariadb://3.36.57.93:3306/cashbook","root","mariadb1234");
-			String sql = "update stats set cnt = cnt+1 WHERE DAY = CURDATE()";
+			String sql = "update stats set cnt = cnt+1 WHERE day = CURDATE()";
 			stmt = conn.prepareStatement(sql);
-			rs = stmt.executeQuery();
-
+			
 			int row = stmt.executeUpdate(); // 입력된 행
 			
 			//디버깅
@@ -108,7 +106,6 @@ public class StatsDao {
 		} finally {
 			// db자원 종료
 			try {
-				rs.close();
 				stmt.close();
 				conn.close();
 			} catch (SQLException e) {

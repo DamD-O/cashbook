@@ -97,16 +97,16 @@ public class CashBookListByMonthController extends HttpServlet {
 		/*
 		 달력출력에 필요한 모델값(1~4.) + DB에서 반환된 모델값(list,출력년도y, 출력월m) + 오늘날짜(today)
 		 */
-		
+		//값 가져와서 저장(달력 공백)
 		request.setAttribute("startBlank", startBlank);
 		request.setAttribute("endDay", endDay);
 		request.setAttribute("endBlank", endBlank);
 		request.setAttribute("totalBlank", totalBlank);
-		
+		//달력 정보
 		request.setAttribute("list", list);
 		request.setAttribute("y", y);
 		request.setAttribute("m", m);
-		//////////////////////////////////////////////////////////
+		
 		
 		//stats
 		request.setAttribute("stats", stats);

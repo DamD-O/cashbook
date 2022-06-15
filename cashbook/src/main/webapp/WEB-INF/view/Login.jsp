@@ -5,34 +5,41 @@
 	if(msg == null){
 		msg = "";
 	}
-	session.invalidate();
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Login</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 </head>
 <body>
-<div>
-	<h2>회원가입</h2>
-	<div>
-		<a href="<%=request.getContextPath()%>/InsertMemberController">회원가입</a>
-	</div>
-	<h2>로그인</h2>
-	<form action="<%=request.getContextPath()%>/LoginController" method="post">
-		<table>
-			<tr>
-				<td>memberId</td>
-				<td><input type="text" name="memberId"></td>
-			</tr>
-			<tr>
-				<td>memberPw</td>
-				<td><input type="password" name="memberPw"></td>
-			</tr>
-		</table>
-		<button type="submit">로그인</button>
-		<div id="msg" style="color: red"><%=msg%></div>
+<div class="container p-3 my-3 border ">
+    <h3>Login</h3>
+    <div id="msg" style="color: red"><%=msg%></div>
+	<form action="<%=request.getContextPath()%>/LoginController" method="post" class="probootstrap-form">
+		<div class="row mb-5">
+	         <div class="col-md">
+	            <div class="form-group">
+	               <label for="probootstrap-date-departure">ID</label>
+	               <div class="probootstrap-date-wrap">
+	                  <input type="text" id="id" class="form-control" placeholder="아이디를 입력해주세요" name="memberId">
+	               </div>
+	                <label for="probootstrap-date-arrival">PASSWORD</label>
+                   <div class="probootstrap-date-wrap">
+                      <input type="password" class="form-control" placeholder="비밀번호를 입력해주세요" name="memberPw">
+                   </div>
+	            </div> 
+	               <button type="submit" class="btn btn-outline-secondary">로그인</button>
+	               
+	               <a href="<%=request.getContextPath()%>/InsertMemberController">회원가입</a>
+	         </div> 
+	      </div>       
+	</form>
+	<form action="<%=request.getContextPath()%>/LoginController" method="post" class="probootstrap-form">
+	   <input type="text" value="test" name="memberId" hidden="hideen">
+       <input type="text" value="1234" name="memberPw" hidden="hideen">
+       <button type="submit"  class="btn btn-outline-secondary">자동 로그인</button>
 	</form>
 </div>	
 </body>

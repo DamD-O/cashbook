@@ -17,8 +17,13 @@ public class CountListener implements HttpSessionListener {
     	se.getSession().getServletContext().setAttribute("currentCount", currentCount+1);//cuurentCount+1한다
     
     	//날짜별 ->DB이용
+    	//dao 객체생성
     	this.statsDao = new StatsDao();
-    	Stats stats = statsDao.selectStatsOneByNow();
+    	Stats stats = statsDao.selectStatsOneByNow(); //오늘 방문자수 메소드 호출
+    	if(stats != null) {
+    	    System.out.println("CountListener.statsDao.selectStatsOneByNow " + stats.toString());
+    	}
+    	
     	if(stats == null) { //오늘 날짜의 카운트가 없다.
     		statsDao.insertStats(); //오늘날짜로 count+1
     	}else { //오늘 날짜 카운트 있다
@@ -30,7 +35,6 @@ public class CountListener implements HttpSessionListener {
         //기존의 세션이 사라졌을때 생성되는 메서드
     	int cuurentCount = (Integer)(se.getSession().getServletContext().getAttribute("currentCount"));
     	se.getSession().getServletContext().setAttribute("currentCount", cuurentCount-1);
-    
     }
 	
 }
