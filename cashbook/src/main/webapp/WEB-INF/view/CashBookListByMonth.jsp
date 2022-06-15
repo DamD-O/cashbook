@@ -34,7 +34,7 @@
 	%>
 	<!-- 로그인 -->
 	<div>
-		<%=session.getAttribute("sessionMemberId")%>님 반갑습니다.
+		<a href="<%=request.getContextPath()%>/SelectMemberOneController?<%=session.getAttribute("sessionMemberId")%>"><%=session.getAttribute("sessionMemberId")%></a>님 반갑습니다.
 		<a href="<%=request.getContextPath()%>/LogoutController" class="btn btn-outline-dark btn-sm">로그아웃</a>
 	</div>
 	<!-- tag -->
