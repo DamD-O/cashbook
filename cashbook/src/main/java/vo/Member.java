@@ -4,7 +4,9 @@ package vo;
 public class Member {
 	private String memberId;
 	private String memberPw;
-	private String createDate;
+	private String memberName;
+	private int memberAge;
+	private String updateDate;
 	
 	public String getMemberId() {
 		return memberId;
@@ -18,17 +20,29 @@ public class Member {
 	public void setMemberPw(String memberPw) {
 		this.memberPw = memberPw;
 	}
-	public String getCreateDate() {
-		return createDate;
+	public String getUpdateDate() {
+		return updateDate;
 	}
-	public void setCreateDate(String createDate) {
-		this.createDate = createDate;
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
 	}
-	
-	@Override
-	public String toString() {
-		return "Member [memberId=" + memberId + ", memberPw=" + memberPw + ", createDate=" + createDate + "]";
-	}
+	public String getMemberName() {
+        return memberName;
+    }
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
+    }
+    public int getMemberAge() {
+        return memberAge;
+    }
+    public void setMemberAge(int memberAge) {
+        this.memberAge = memberAge;
+    }
+    @Override
+    public String toString() {
+        return "Member [memberId=" + memberId + ", memberPw=" + memberPw + ", memberName=" + memberName + ", memberAge="
+                + memberAge + ", updateDate=" + updateDate + "]";
+    }
 	
 	
 }
