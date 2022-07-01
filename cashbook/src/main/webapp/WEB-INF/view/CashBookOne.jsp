@@ -43,8 +43,8 @@
 		</tr>
 	</table>
 	<div>
-		<a href="<%=request.getContextPath()%>/UpdateCashBookController" class="btn btn-outline-success">수정</a>
-		<a href="<%=request.getContextPath()%>/DeleteCashBookController" class="btn btn-outline-danger">삭제</a>
+		<a href="<%=request.getContextPath()%>/UpdateCashBookController?cashbookNo=<%=request.getAttribute("cashbookNo") %>" class="btn btn-outline-success">수정</a>
+		<a href="<%=request.getContextPath()%>/DeleteCashBookController?cashbookNo=<%=request.getAttribute("cashbookNo") %>" class="btn btn-outline-danger">삭제</a>
 	</div>
 </div>
 </body>
